@@ -1363,17 +1363,17 @@ class AssistmentsDataSource(KaggleDataSource):
         logging.info(
             "reading assistments data (can be slow due to large file size)")
         # TODO(jpgard): uncomment below to use full-width dataset after testing.
-        # df = pd.read_csv(os.path.join(
-        #     self.cache_dir,
-        #     self.kaggle_dataset_name,
-        #     "2012-2013-data-with-predictions-4-final.csv"))
+        df = pd.read_csv(os.path.join(
+            self.cache_dir,
+            self.kaggle_dataset_name,
+            "2012-2013-data-with-predictions-4-final.csv"))
         # # # write out a tiny version of assistments datasets
         # import ipdb;
         # ipdb.set_trace()
         # df[tableshift.datasets.ASSISTMENTS_FEATURES.names].to_feather(
         #     os.path.join(self.cache_dir, "assistments-subset.feather"))
-        df = pd.read_feather(os.path.join(self.cache_dir,
-                                          "assistments-subset.feather"))
+        # df = pd.read_feather(os.path.join(self.cache_dir,
+        #                                   "assistments-subset.feather"))
         logging.info("finished reading data")
         return df
 
