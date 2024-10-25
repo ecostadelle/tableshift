@@ -386,6 +386,8 @@ class ACSDataSource(DataSource):
 
     def _get_acs_data(self):
         year_dfs = []
+        task_config = ACS_TASK_CONFIGS[self.acs_task]
+        features=task_config.features_to_use.names
 
         for year in self.years:
             logging.info(f"fetching ACS data for year {year}...")
@@ -394,7 +396,7 @@ class ACSDataSource(DataSource):
                                              join_household=True,
                                              download=True)
             year_data["ACS_YEAR"] = year
-            year_dfs.append(year_data)
+            year_dfs.append(year_data[features])
         logging.info("fetching ACS data complete.")
         return pd.concat(year_dfs, axis=0)
 
